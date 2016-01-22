@@ -31,31 +31,22 @@ class ClientService {
         }
     }
 
-    public def createClient(Client c) {
-        def  url = "${root_url}/"
-        HttpHeaders requestHeaders = new HttpHeaders();
-        requestHeaders.setContentType(MediaType.APPLICATION_JSON)
-        HttpEntity<Client> requestEntity = new HttpEntity<Client>(c, requestHeaders);
-
-        def response = tpl.exchange(url,  HttpMethod.POST, requestEntity, Client.class)
-        if (response.statusCode.value() == 200) {
-            return response.body
-        } else  {//TODO
-            return new Client()
-        }
+    public def getNewClient() {
+        return new Client()
     }
 
-    public def updateClient(Client c) {
-        def  url = "${root_url}/update"
+
+    public def saveClient(Client c) {
+        def  url = "${root_url}/save"
         HttpHeaders requestHeaders = new HttpHeaders();
         requestHeaders.setContentType(MediaType.APPLICATION_JSON)
         requestHeaders.setAccept([MediaType.APPLICATION_JSON])
         HttpEntity<Client> requestEntity = new HttpEntity<Client>(c, requestHeaders);
         List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>();
         messageConverters.add(new MappingJackson2HttpMessageConverter());
-        RestTemplate tpl = new RestTemplate()
         tpl.setMessageConverters(messageConverters)
 
+//TODO handle response better when error
         def response = tpl.exchange(url,  HttpMethod.POST, requestEntity, Client.class)
         if (response.statusCode.value() == 200) {
             return response.body

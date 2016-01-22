@@ -1,3 +1,4 @@
+import org.springframework.util.StringUtils
 import org.springframework.web.servlet.ModelAndView
 
 /**
@@ -9,20 +10,25 @@ class ClientController {
     //static scope = "session"
     ClientService clientService
 
-    def view(String id) {
+    def edit(String id) {
         [client : clientService.getClient(id)]
+    }
 
+    def newclient() {
+        [client : clientService.getNewClient()]
     }
 
     def save() {
         Client c = new Client()
-        //TODO find better way !
-        c.setId(Integer.valueOf(params.client_id))
+        if (!"0".equals(params.client_id) && StringUtils.hasLength(params.client_id)) {
+            c.id = Integer.valueOf(params.client_id)
+        } else {
+            c.id = null
+        }
         c.setLastName(params.lastName)
         c.setFirstName(params.firstName)
         c.setType(params.type)
-        def res = clientService.updateClient(c)
-        redirect(controller : 'client', action: 'view' , id:res.id)
-        return
+        def res = clientService.saveClient(c)
+        redirect(controller : 'client', action: 'edit' , id:res.id)
     }
 }

@@ -1,12 +1,14 @@
 /**
  * Created by jilbi on 11/7/15.
  */
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize
 import grails.rest.*
 
-
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
 class Client {
 
-    private int id
+    private Integer id
     private String lastName
     private String firstName
     private String type
@@ -14,11 +16,11 @@ class Client {
     private Date updateDt
     private String lockedBy
 
-    public int getId() {
+    public Integer getId() {
         return id
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id
     }
 

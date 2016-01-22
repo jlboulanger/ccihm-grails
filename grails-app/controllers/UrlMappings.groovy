@@ -6,7 +6,7 @@ class UrlMappings {
                 // apply constraints here
             }
         }
-
+        "/client/newclient"(view: "/client/edit")
         "/"(view:"/index")
         "500"(view:'/error')
         "404"(view:'/notFound')
