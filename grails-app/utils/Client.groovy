@@ -16,6 +16,15 @@ class Client {
     private Date updateDt
     private String lockedBy
 
+    List<ContactInfos> getContacts() {
+        return contacts
+    }
+
+    void setContacts(List<ContactInfos> contacts) {
+        this.contacts = contacts
+    }
+    private List<ContactInfos> contacts;
+
     public Integer getId() {
         return id
     }
