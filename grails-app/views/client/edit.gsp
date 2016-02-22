@@ -11,7 +11,7 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">Edit client</div>
                 <p/>
-                <g:form name="edit_client" url="[action:'save', controller:'client']" id="${client?.id}" class="form-horizontal">
+                <g:form name="edit_client" url="[action:'save', controller:'client']" id="${client?.id}">
 
                     <g:render template="/client/clientTpl" model="[client: client]"/>
                     <p/>
