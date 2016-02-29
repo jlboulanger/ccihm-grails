@@ -1,3 +1,4 @@
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.util.StringUtils
 import org.springframework.web.servlet.ModelAndView
 
@@ -9,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView
 class ClientController {
     //static scope = "session"
     ClientService clientService
+    ContactService contactService
 
     def edit(String id) {
         [client : clientService.getClient(id)]
@@ -30,5 +32,18 @@ class ClientController {
         c.setType(params.type)
         def res = clientService.saveClient(c)
         redirect(controller : 'client', action: 'edit' , id:res.id)
+    }
+
+
+
+    def newcontact() {
+        [contact: contactService.getNewContact(), onlydisplay:false]
+    }
+
+    def deletecontact(String contact_id) {
+        System.out.println("deleting contact " + contact_id + " for client " + params.id);
+        System.out.println("contact service is : " + (contactService == null ? "null" : "autowired"));
+        contactService.deleteContact(contact_id);
+        redirect(controller : 'client', action: 'edit' , id:params.id)
     }
 }

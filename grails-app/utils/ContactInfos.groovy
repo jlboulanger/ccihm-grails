@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize
 @JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
 class ContactInfos {
     private Integer id;
+    private Integer clientId;
     private String address1;
     private String address2;
     private String city;
@@ -21,6 +22,14 @@ class ContactInfos {
 
     void setId(Integer id) {
         this.id = id
+    }
+
+    Integer getClientId() {
+        return clientId;
+    }
+
+    void setClientId(Integer clientId) {
+        this.clientId = clientId;
     }
 
     String getAddress1() {

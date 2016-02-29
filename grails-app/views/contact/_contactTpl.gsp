@@ -1,5 +1,5 @@
 
-<div class="col-md-4">
+
 
     <div class="row">
         <div class="col-md-1"></div>
@@ -37,4 +37,3 @@
         <div class="col-md-8"><g:formatDate name="createDt" date="${contact?.createDt}" type="date" style="LONG" readonly="true" class="col-sm-12"/></div>
     </div>
     <p/>
-</div>
